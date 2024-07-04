@@ -20,6 +20,16 @@ class IBASSaleOrderLine(models.Model):
 class IBASSale(models.Model):
     _inherit = 'sale.order'
 
+    @api.depends('date_order')
+    def _compute_currency_rate(self):
+        for order in self:
+            date_order = order.date_order or fields.Datetime.now()
+            if isinstance(date_order, datetime):
+                date_order = date_order.date()
+            order.currency_rate = self.env['res.currency']._get_conversion_rate(
+                order.currency_id, order.company_id.currency_id, order.company_id, date_order
+            )
+
     # Realestate
     unit_id = fields.Many2one('product.product', string='Unit', domain=[('is_a_property', '=', True),('state', '=', 'open')])
 
