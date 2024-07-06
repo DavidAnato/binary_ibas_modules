@@ -42,6 +42,7 @@ class IBASAccount(models.Model):
         'line_ids.amount_residual',
         'line_ids.amount_residual_currency',
         'line_ids.payment_id.state')
+        
     def _compute_amount(self):
 
         invoice_ids = [move.id for move in self if move.id and move.is_invoice(
@@ -82,7 +83,7 @@ class IBASAccount(models.Model):
                     currencies.add(line.currency_id)
 
                 # Untaxed amount.
-                if (move.is_invoice(include_receipts=True) and not line.exclude_from_invoice_tab) \
+                if (move.is_invoice(include_receipts=True) ) \
                         or (move.move_type == 'entry' and line.debit and not line.tax_line_id):
                     total_untaxed += line.balance
                     total_untaxed_currency += line.amount_currency
@@ -93,7 +94,7 @@ class IBASAccount(models.Model):
                     total_tax_currency += line.amount_currency
 
                 # Residual amount.
-                if move.move_type == 'entry' or line.account_id.user_type_id.type in ('receivable', 'payable'):
+                if move.move_type == 'entry' or line.account_id.account_type in ('receivable', 'payable'):
                     total_residual += line.amount_residual
                     total_residual_currency += line.amount_residual_currency
 
