@@ -65,7 +65,7 @@
                 <page string="Payments" name="payments">
                     <field name="payment_count" invisible="1"/>
                     <field name="payment_ids" widget="many2many">
-                        <tree default_order="payment_date" delete="0" create="0">
+                        <tree default_order="payment_date" delete="1" create="1">
                         <field name="date"/>
                         <field name="name"/>
                         <field name="check_number"/>
@@ -115,9 +115,9 @@
 <!--        <field name="groups_id" eval="[(6,0,[ref('ibas_realestate.group_account_collection')])]"/>-->
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
-                <attribute name="create">0</attribute>
-                <attribute name="edit">0</attribute>
-                <attribute name="delete">0</attribute>
+                <attribute name="create">1</attribute>
+                <attribute name="edit">1</attribute>
+                <attribute name="delete">1</attribute>
             </xpath>
         </field>
     </record>  
@@ -129,9 +129,9 @@
 <!--        <field name="groups_id" eval="[(6,0,[ref('ibas_realestate.group_account_collection')])]"/>-->
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
-                <attribute name="create">0</attribute>
-                <attribute name="edit">0</attribute>
-                <attribute name="delete">0</attribute>
+                <attribute name="create">1</attribute>
+                <attribute name="edit">1</attribute>
+                <attribute name="delete">1</attribute>
             </xpath>
             <xpath expr="//button[@name='action_invoice_sent'][1]" position="attributes">
                 <attribute name="invisible">state != 'posted' or is_move_sent or move_type not in ('out_invoice', 'out_refund') or is_user_collection</attribute>

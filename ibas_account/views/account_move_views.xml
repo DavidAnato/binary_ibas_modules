@@ -115,8 +115,7 @@
             <field name="name">account.bill.tree</field>
             <field name="model">account.move</field>
             <field name="arch" type="xml">
-                <tree decoration-info="state == 'draft'" string="Invoices" decoration-muted="state == 'cancel'"
-                      js_class="account_tree">
+                <tree string="Invoices" js_class="account_tree" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" expand="context.get('expand', False)" sample="1" create="1" edit="1" delete="1" banner_route="/onboarding/account_invoice">
                     <field name="name"/>
                     <field name="partner_id" invisible="1"/>
                     <field name="invoice_source_email" invisible="1"/>
