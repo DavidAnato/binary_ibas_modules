@@ -157,16 +157,14 @@
               <div colspan="5" col="5" style="padding: 5px; margin-right: 5px; margin-top: 3px; border: 1px solid black">
                   <button name="%(action_ibas_realestate_update_sale_price_wiz)d" colspan="5" type="action" string="Update Price" class="oe_highlight" invisible="state != 'open'"/>
               </div>
-              <group>
-                  <field name="price_history_line_ids" nolabel="1">
-                      <tree editable="bottom" default_order="effective_date desc">
-                          <field name="effective_date"/>
-                          <field name="selling_price"/>
-                          <field name="pre_selling_price" invisible="1"/>
-                          <field name="user_id"/>
-                      </tree>
-                  </field>
-              </group>
+                <field name="price_history_line_ids" nolabel="1">
+                    <tree editable="bottom" default_order="effective_date desc">
+                        <field name="effective_date"/>
+                        <field name="selling_price"/>
+                        <field name="pre_selling_price" invisible="1"/>
+                        <field name="user_id"/>
+                    </tree>
+                </field>
           </page>
       </notebook>
   </sheet>
